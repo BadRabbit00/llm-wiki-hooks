@@ -1,0 +1,18 @@
+{
+  "description": "llm-wiki: напоминание о устаревшем блоке политик на старте сессии",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "wk hook policy-stale",
+            "timeout": 10,
+            "statusMessage": "проверка политик"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "description": "llm-wiki: защита сгенерированного блока политик",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "wk hook guard-block",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}
