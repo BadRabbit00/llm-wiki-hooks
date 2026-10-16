@@ -5,12 +5,16 @@
 
 | файл | куда | что внутри |
 |---|---|---|
-| `claude-settings.json` | `.claude/settings.json` | `guard-paths`, `guard-block`, `policy-stale`, `check` |
+| `claude-settings.json` | `.claude/settings.json` | `guard-paths`, `guard-block`, `guard-shell`, `policy-stale`, `check` |
 | `codex-hooks.json` | `.codex/hooks.json` | то же |
 
 Два хука записи сведены в одну группу `PreToolUse` с общим matcher: у обоих харнессов
 несколько команд в одной группе выполняются вместе, и достаточно кода 2 от любой,
-чтобы запись была заблокирована.
+чтобы запись была заблокирована. `guard-shell` — отдельная группа с matcher `Bash`.
+В Codex `apply_patch` приходит в группу записи (как `Edit`/`Write`), shell — в `Bash`.
+
+В `claude-settings.json` хуки записи и `check` объявлены с `"onFailure": "block"`:
+без `wk` в PATH они закрываются, а не пропускают. В `codex-hooks.json` поля нет.
 
 Гейт на остановке вызывает `wk hook check`, а **не** `wk check --strict`: блокирует
 только код 2, а прямая команда даёт 1 при ошибках и 3 без сети. Подмена превращает

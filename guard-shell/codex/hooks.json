@@ -1,0 +1,17 @@
+{
+  "description": "llm-wiki: растяжка на shell-команды, меняющие проверки и их конфигурацию",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "wk hook guard-shell",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -7,7 +7,8 @@
             "type": "command",
             "command": "wk hook check",
             "timeout": 10,
-            "statusMessage": "проверка документации и политик"
+            "statusMessage": "проверка документации и политик",
+            "onFailure": "block"
           }
         ]
       }
